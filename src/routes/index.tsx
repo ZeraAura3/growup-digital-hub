@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles, TrendingUp, Megaphone, Globe, Search, Target, Palette, BarChart3, Quote } from "lucide-react";
 import heroImg from "@/assets/hero-growth.jpg";
+import growthVideo from "@/assets/AQOYCGTe8g2-ndEoRjfk6p-9S4AsJXYo0hB6x3---4FbUJp4mf3ZJw_jpgAY1jxbYGWo3qJDXM0IUlmw4RPupYCUi-AY5XNYIAnaL_kSxA.mp4";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +33,14 @@ const whyUs = [
   { title: "Modern Strategies", desc: "Latest trends, tools and AI-driven workflows." },
 ];
 
+const homeVideos = [
+  {
+    src: growthVideo,
+    title: "Campaign stories in motion",
+    desc: "Short-form video content built to introduce your brand, explain your offer and keep attention where it matters.",
+  },
+];
+
 function Home() {
   return (
     <div className="relative">
@@ -42,34 +51,56 @@ function Home() {
           <img src={heroImg} alt="" width={1600} height={1200} className="h-full w-full object-cover mix-blend-screen" />
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 pt-24 pb-32 md:pt-32 md:pb-40">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse" />
-              Digital Marketing for Modern Businesses
-            </span>
-            <h1 className="mt-6 text-5xl md:text-7xl font-extrabold leading-[1.05] text-gradient">
-              Helping Startups<br />Grow Digitally.
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-              GrowUp Services is a modern digital marketing studio helping small businesses, startups
-              and local brands build a strong online identity through social media, SEO, websites,
-              ads and branding.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link to="/contact" className="btn-hero inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium">
-                Start Your Growth Journey <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/contact" className="btn-ghost inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium">
-                Get Free Consultation
-              </Link>
+        <div className="mx-auto max-w-7xl px-6 pt-24 pb-22 md:pt-26 md:pb-26">
+          <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(320px,0.8fr)] lg:grid-cols-[minmax(0,1fr)_500px] md:items-center">
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse" />
+                Digital Marketing for Modern Businesses
+              </span>
+              <h1 className="mt-6 text-5xl md:text-6xl xl:text-7xl font-extrabold leading-[1.05] text-gradient">
+                Helping Startups<br />Grow Digitally.
+              </h1>
+              <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
+                GrowUp Services is a modern digital marketing studio helping small businesses, startups
+                and local brands build a strong online identity through social media, SEO, websites,
+                ads and branding.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Link to="/contact" className="btn-hero inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium">
+                  Start Your Growth Journey <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link to="/contact" className="btn-ghost inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium">
+                  Get Free Consultation
+                </Link>
+              </div>
+            </div>
+
+            <div className="w-full max-w-xl md:justify-self-end">
+              {homeVideos.map((video) => (
+                <figure key={video.title} className="bento-card glow-ring overflow-hidden">
+                  <div className="relative aspect-[10/10] bg-surface-2">
+                    <video
+                      src={video.src}
+                      className="h-full w-full object-cover brightness-90 saturate-125"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label={video.title}
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/25 via-primary-glow/10 to-background/20 mix-blend-color" />
+                  </div>
+                </figure>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* BENTO HIGHLIGHTS */}
-      <section className="mx-auto max-w-7xl px-6 -mt-16 relative z-10">
+      <section className="mx-auto max-w-7xl px-6 -mt-12 md:mt-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-[180px]">
           <div className="bento-card md:col-span-4 md:row-span-2 p-8 flex flex-col justify-between">
             <div>

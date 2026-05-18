@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import groupLogo from "@/assets/group_logo.png";
 
 export function SiteHeader() {
   const links = [
@@ -14,12 +14,14 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/60 border-b border-white/5">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <span className="grid place-items-center h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_20px_-4px_var(--color-primary)]">
-            <Sparkles className="h-4 w-4 text-primary-foreground" />
+          <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white shadow-[0_0_20px_-6px_var(--color-primary)]">
+            <img
+              src={groupLogo}
+              alt="GrowUp Services"
+              className="h-16 w-16 object-cover object-[50%_35%]"
+            />
           </span>
-          <span className="font-display font-bold tracking-tight text-lg">
-            GrowUp<span className="text-primary-glow">.</span>
-          </span>
+          <span className="font-display font-bold tracking-tight text-lg">GrowUp</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -29,7 +31,9 @@ export function SiteHeader() {
               to={l.to}
               activeOptions={{ exact: l.to === "/" }}
               className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md"
-              activeProps={{ className: "text-foreground" }}
+              activeProps={{
+                className: "bg-white/10 text-foreground shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]",
+              }}
             >
               {l.label}
             </Link>
@@ -53,10 +57,14 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 py-12 grid gap-8 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <span className="grid place-items-center h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary-glow">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+            <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white">
+              <img
+                src={groupLogo}
+                alt="GrowUp Services"
+                className="h-16 w-16 object-cover object-[50%_35%]"
+              />
             </span>
-            <span className="font-display font-bold text-lg">GrowUp<span className="text-primary-glow">.</span></span>
+            <span className="font-display font-bold text-lg">GrowUp</span>
           </div>
           <p className="text-sm text-muted-foreground max-w-xs">
             Digital Marketing • Branding • Website Development • Startup Growth Solutions
@@ -74,8 +82,17 @@ export function SiteFooter() {
         <div className="text-sm">
           <h4 className="font-display font-semibold mb-3">Reach us</h4>
           <ul className="space-y-2 text-muted-foreground">
-            <li>info@growupservices.com</li>
-            <li>+91 XXXXX XXXXX</li>
+            <li>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=growup3201@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                growup3201@gmail.com
+              </a>
+            </li>
+            <li>+91 87509 88926</li>
             <li>Greater Noida, India</li>
           </ul>
         </div>

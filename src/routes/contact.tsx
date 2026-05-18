@@ -34,8 +34,8 @@ function Contact() {
               <Phone className="h-5 w-5 text-primary-foreground" />
             </div>
             <div>
-              <div className="text-xs text-muted-foreground uppercase tracking-wider">Call us</div>
-              <div className="font-display text-lg mt-1">+91 XXXXX XXXXX</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wider">Facebook</div>
+              <div className="font-display text-lg mt-1"><a href="https://www.facebook.com/GrowUP3201/" target="_blank" rel="noopener noreferrer">GrowUp FaceBook</a></div>
             </div>
           </div>
           <div className="bento-card p-6 flex items-start gap-4">
@@ -44,7 +44,14 @@ function Contact() {
             </div>
             <div>
               <div className="text-xs text-muted-foreground uppercase tracking-wider">Email</div>
-              <div className="font-display text-lg mt-1">info@growupservices.com</div>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=growup3201@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+                className="font-display text-lg mt-1 inline-block hover:text-primary-glow transition-colors"
+              >
+                growup3201@gmail.com
+              </a>
             </div>
           </div>
           <div className="bento-card p-6 flex items-start gap-4">
