@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -115,31 +119,31 @@ function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          className="bento-card p-8 grid gap-4"
+          className="bento-card p-8 grid gap-6"
         >
           <div className="grid sm:grid-cols-2 gap-4">
-            <label className="grid gap-2 text-sm">
-              <span className="text-muted-foreground">Your name</span>
-              <input name="name" required className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="Jane Doe" />
-            </label>
-            <label className="grid gap-2 text-sm">
-              <span className="text-muted-foreground">Email</span>
-              <input name="email" required type="email" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="you@brand.com" />
-            </label>
+            <div className="grid gap-2">
+              <Label htmlFor="name" className="text-muted-foreground">Your name</Label>
+              <Input id="name" name="name" required className="bg-white/5 border-white/10 rounded-lg px-4 py-6 outline-none focus-visible:ring-primary-glow transition" placeholder="Jane Doe" />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="email" className="text-muted-foreground">Email</Label>
+              <Input id="email" name="email" required type="email" className="bg-white/5 border-white/10 rounded-lg px-4 py-6 outline-none focus-visible:ring-primary-glow transition" placeholder="you@brand.com" />
+            </div>
           </div>
-          <label className="grid gap-2 text-sm">
-            <span className="text-muted-foreground">Business / Brand</span>
-            <input name="business" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="GrowUp Co." />
-          </label>
-          <label className="grid gap-2 text-sm">
-            <span className="text-muted-foreground">How can we help?</span>
-            <textarea name="message" required rows={5} className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition resize-none" placeholder="Tell us about your goals…" />
-          </label>
+          <div className="grid gap-2">
+            <Label htmlFor="business" className="text-muted-foreground">Business / Brand</Label>
+            <Input id="business" name="business" className="bg-white/5 border-white/10 rounded-lg px-4 py-6 outline-none focus-visible:ring-primary-glow transition" placeholder="GrowUp Co." />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="message" className="text-muted-foreground">How can we help?</Label>
+            <Textarea id="message" name="message" required rows={5} className="bg-white/5 border-white/10 rounded-lg px-4 py-3 outline-none focus-visible:ring-primary-glow transition resize-none text-base" placeholder="Tell us about your goals…" />
+          </div>
           <button type="submit" disabled={loading || sent} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
             {loading ? "Sending..." : sent ? "Thanks — we'll be in touch!" : (<>Send Message <Send className="h-4 w-4" /></>)}
           </button>
           {error && (
-            <div className="text-red-500 text-sm mt-2 text-center">
+            <div className="text-red-500 text-sm md:col-span-2 text-center">
               Something went wrong. Please try again or email us directly at growup3201@gmail.com
             </div>
           )}
