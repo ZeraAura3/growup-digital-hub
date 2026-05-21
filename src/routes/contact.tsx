@@ -17,16 +17,18 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setError(false);
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
-      await fetch("https://formsubmit.co/ajax/growup3201@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/growup3201@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,11 +42,16 @@ function Contact() {
           _subject: "New Contact Form Submission - GrowUp",
         }),
       });
+      
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+      
       setSent(true);
       form.reset();
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong. Please try again or email us directly at growup3201@gmail.com");
+    } catch (err) {
+      console.error(err);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -131,6 +138,11 @@ function Contact() {
           <button type="submit" disabled={loading || sent} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
             {loading ? "Sending..." : sent ? "Thanks — we'll be in touch!" : (<>Send Message <Send className="h-4 w-4" /></>)}
           </button>
+          {error && (
+            <div className="text-red-500 text-sm mt-2 text-center">
+              Something went wrong. Please try again or email us directly at growup3201@gmail.com
+            </div>
+          )}
         </form>
       </div>
     </div>
