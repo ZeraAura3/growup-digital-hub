@@ -16,6 +16,40 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      await fetch("https://formsubmit.co/ajax/growup3201@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          business: data.business,
+          message: data.message,
+          _subject: "New Contact Form Submission - GrowUp",
+        }),
+      });
+      setSent(true);
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong. Please try again or email us directly at growup3201@gmail.com");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-24">
       <span className="text-xs uppercase tracking-widest text-primary-glow">Contact</span>
@@ -35,7 +69,14 @@ function Contact() {
             </div>
             <div>
               <div className="text-xs text-muted-foreground uppercase tracking-wider">Facebook</div>
-              <div className="font-display text-lg mt-1"><a href="https://www.facebook.com/GrowUP3201/" target="_blank" rel="noopener noreferrer">GrowUp FaceBook</a></div>
+              <a
+                href="https://www.facebook.com/GrowUP3201/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-display text-lg mt-1 inline-block hover:text-primary-glow transition-colors"
+              >
+                GrowUp FaceBook
+              </a>
             </div>
           </div>
           <div className="bento-card p-6 flex items-start gap-4">
@@ -66,29 +107,29 @@ function Contact() {
         </div>
 
         <form
-          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+          onSubmit={handleSubmit}
           className="bento-card p-8 grid gap-4"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <label className="grid gap-2 text-sm">
               <span className="text-muted-foreground">Your name</span>
-              <input required className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="Jane Doe" />
+              <input name="name" required className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="Jane Doe" />
             </label>
             <label className="grid gap-2 text-sm">
               <span className="text-muted-foreground">Email</span>
-              <input required type="email" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="you@brand.com" />
+              <input name="email" required type="email" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="you@brand.com" />
             </label>
           </div>
           <label className="grid gap-2 text-sm">
             <span className="text-muted-foreground">Business / Brand</span>
-            <input className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="GrowUp Co." />
+            <input name="business" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition" placeholder="GrowUp Co." />
           </label>
           <label className="grid gap-2 text-sm">
             <span className="text-muted-foreground">How can we help?</span>
-            <textarea required rows={5} className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition resize-none" placeholder="Tell us about your goals…" />
+            <textarea name="message" required rows={5} className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow transition resize-none" placeholder="Tell us about your goals…" />
           </label>
-          <button type="submit" className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2">
-            {sent ? "Thanks — we'll be in touch!" : (<>Send Message <Send className="h-4 w-4" /></>)}
+          <button type="submit" disabled={loading || sent} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
+            {loading ? "Sending..." : sent ? "Thanks — we'll be in touch!" : (<>Send Message <Send className="h-4 w-4" /></>)}
           </button>
         </form>
       </div>
