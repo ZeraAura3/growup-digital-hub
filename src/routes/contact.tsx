@@ -15,9 +15,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.add("contact-safety");
@@ -26,7 +24,7 @@ function Contact() {
     };
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -40,29 +38,13 @@ function Contact() {
       return;
     }
 
-    setLoading(true);
-    setError(false);
+    const subject = `New enquiry from ${name}${business ? ` (${business})` : ""}`;
+    const body = `Name: ${name}\nEmail: ${email}\nBusiness: ${business}\n\n${message}`;
+    const mailto = `mailto:growup3201@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
 
-    try {
-      formData.set("name", name);
-      formData.set("email", email);
-      formData.set("business", business);
-      formData.set("message", message);
-
-      await fetch("https://script.google.com/macros/s/AKfycbyxee6wVxTMc9CW_6ZyniP7WUbhde226oh-UjpjB3cpoY-iSPOUxc83UuMcM9Ep877ngg/exec", {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      });
-
-      setSent(true);
-      form.reset();
-    } catch (err) {
-      console.error(err);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    setSent(true);
+    form.reset();
   };
 
   return (
@@ -176,17 +158,12 @@ function Contact() {
               placeholder="Tell us about your goals…"
             />
           </div>
-          <button type="submit" disabled={loading} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
-            {loading ? "Sending..." : (<>Send Message <Send className="h-4 w-4" /></>)}
+          <button type="submit" className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2">
+            Send Message <Send className="h-4 w-4" />
           </button>
           {sent && (
             <div className="text-emerald-400 text-sm md:col-span-2 text-center">
-              Thanks — we will be in touch!
-            </div>
-          )}
-          {error && (
-            <div className="text-red-500 text-sm md:col-span-2 text-center">
-              Something went wrong. Please try again or email us directly at growup3201@gmail.com
+              Thanks — your email client should open. We'll reply within 24 hours!
             </div>
           )}
         </form>
