@@ -1,10 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
-import { useState } from "react";
-
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -19,46 +14,22 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setError(false);
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    
+    // Grab all the details typed by the user
+    const name = formData.get("name")?.toString() || "A User";
+    const business = formData.get("business")?.toString() || "";
+    const message = formData.get("message")?.toString() || "";
 
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/growup3201@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          business: data.business,
-          message: data.message,
-          _subject: "New Contact Form Submission - GrowUp",
-        }),
-      });
-      
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-      
-      setSent(true);
-      form.reset();
-    } catch (err) {
-      console.error(err);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    // Format the email subject and body
+    const subject = encodeURIComponent(`New Inquiry from ${name} ${business ? `(${business})` : ''}`);
+    const body = encodeURIComponent(message + `\n\nKind regards,\n${name}`);
+
+    // Opens their default mail app (Gmail, Outlook, Apple Mail) simply
+    window.location.href = `mailto:growup3201@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -119,34 +90,29 @@ function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          className="bento-card p-8 grid gap-6"
+          className="bento-card p-8 grid gap-4"
         >
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="name" className="text-muted-foreground">Your name</Label>
-              <Input id="name" name="name" required className="bg-white/5 border-white/10 rounded-lg px-4 py-6 outline-none focus-visible:ring-primary-glow transition" placeholder="Jane Doe" />
+            <div className="grid gap-2 text-sm">
+              <span className="text-muted-foreground block">Your name</span>
+              <input id="name" name="name" required className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow" placeholder="Jane Doe" />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="email" className="text-muted-foreground">Email</Label>
-              <Input id="email" name="email" required type="email" className="bg-white/5 border-white/10 rounded-lg px-4 py-6 outline-none focus-visible:ring-primary-glow transition" placeholder="you@brand.com" />
+            <div className="grid gap-2 text-sm">
+              <span className="text-muted-foreground block">Email</span>
+              <input id="email" name="email" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow" placeholder="you@brand.com" />
             </div>
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="business" className="text-muted-foreground">Business / Brand</Label>
-            <Input id="business" name="business" className="bg-white/5 border-white/10 rounded-lg px-4 py-6 outline-none focus-visible:ring-primary-glow transition" placeholder="GrowUp Co." />
+          <div className="grid gap-2 text-sm">
+            <span className="text-muted-foreground block">Business / Brand</span>
+            <input id="business" name="business" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow" placeholder="GrowUp Co." />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="message" className="text-muted-foreground">How can we help?</Label>
-            <Textarea id="message" name="message" required rows={5} className="bg-white/5 border-white/10 rounded-lg px-4 py-3 outline-none focus-visible:ring-primary-glow transition resize-none text-base" placeholder="Tell us about your goals…" />
+          <div className="grid gap-2 text-sm">
+            <span className="text-muted-foreground block">How can we help?</span>
+            <textarea id="message" name="message" required rows={5} className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow resize-none" placeholder="Tell us about your goals…" />
           </div>
-          <button type="submit" disabled={loading || sent} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
-            {loading ? "Sending..." : sent ? "Thanks — we'll be in touch!" : (<>Send Message <Send className="h-4 w-4" /></>)}
+          <button type="submit" className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2">
+            Send Message via Email <Send className="h-4 w-4" />
           </button>
-          {error && (
-            <div className="text-red-500 text-sm md:col-span-2 text-center">
-              Something went wrong. Please try again or email us directly at growup3201@gmail.com
-            </div>
-          )}
         </form>
       </div>
     </div>
