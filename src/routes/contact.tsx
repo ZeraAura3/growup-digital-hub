@@ -19,8 +19,11 @@ function Contact() {
   const [email, setEmail] = useState("");
   const [business, setBusiness] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!name.trim() || !message.trim()) {
@@ -28,14 +31,33 @@ function Contact() {
       return;
     }
 
-    // Format the email subject and body
-    const subject = encodeURIComponent(`New Inquiry from ${name} ${business ? `(${business})` : ''}`);
-    let rawBody = message + `\n\nKind regards,\n${name}`;
-    if (email) rawBody += `\nEmail: ${email}`;
-    const body = encodeURIComponent(rawBody);
+    setLoading(true);
+    setError(false);
 
-    // Opens their default mail app (Gmail, Outlook, Apple Mail) simply
-    window.location.href = `mailto:growup3201@gmail.com?subject=${subject}&body=${body}`;
+    try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("business", business);
+      formData.append("message", message);
+
+      await fetch("https://script.google.com/macros/s/AKfycbyxee6wVxTMc9CW_6ZyniP7WUbhde226oh-UjpjB3cpoY-iSPOUxc83UuMcM9Ep877ngg/exec", {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+
+      setSent(true);
+      setName("");
+      setEmail("");
+      setBusiness("");
+      setMessage("");
+    } catch (err) {
+      console.error(err);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -157,9 +179,14 @@ function Contact() {
               placeholder="Tell us about your goals…"
             />
           </div>
-          <button type="submit" className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2">
-            Send Message via Email <Send className="h-4 w-4" />
+          <button type="submit" disabled={loading || sent} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
+            {loading ? "Sending..." : sent ? "Thanks — we'll be in touch!" : (<>Send Message <Send className="h-4 w-4" /></>)}
           </button>
+          {error && (
+            <div className="text-red-500 text-sm md:col-span-2 text-center">
+              Something went wrong. Please try again or email us directly at growup3201@gmail.com
+            </div>
+          )}
         </form>
       </div>
     </div>
