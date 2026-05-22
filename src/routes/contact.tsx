@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { useState } from "react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -14,19 +15,24 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [business, setBusiness] = useState("");
+  const [message, setMessage] = useState("");
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
     
-    // Grab all the details typed by the user
-    const name = formData.get("name")?.toString() || "A User";
-    const business = formData.get("business")?.toString() || "";
-    const message = formData.get("message")?.toString() || "";
+    if (!name.trim() || !message.trim()) {
+      alert("Please provide your name and a message so we can help you best!");
+      return;
+    }
 
     // Format the email subject and body
     const subject = encodeURIComponent(`New Inquiry from ${name} ${business ? `(${business})` : ''}`);
-    const body = encodeURIComponent(message + `\n\nKind regards,\n${name}`);
+    let rawBody = message + `\n\nKind regards,\n${name}`;
+    if (email) rawBody += `\nEmail: ${email}`;
+    const body = encodeURIComponent(rawBody);
 
     // Opens their default mail app (Gmail, Outlook, Apple Mail) simply
     window.location.href = `mailto:growup3201@gmail.com?subject=${subject}&body=${body}`;
@@ -91,24 +97,65 @@ function Contact() {
         <form
           onSubmit={handleSubmit}
           className="bento-card p-8 grid gap-4"
+          autoComplete="off"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="grid gap-2 text-sm">
               <span className="text-muted-foreground block">Your name</span>
-              <input id="name" name="name" required className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow" placeholder="Jane Doe" />
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                autoComplete="off"
+                data-1p-ignore
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow"
+                placeholder="Jane Doe"
+              />
             </div>
             <div className="grid gap-2 text-sm">
               <span className="text-muted-foreground block">Email</span>
-              <input id="email" name="email" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow" placeholder="you@brand.com" />
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autoComplete="off"
+                data-1p-ignore
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow"
+                placeholder="you@brand.com"
+              />
             </div>
           </div>
           <div className="grid gap-2 text-sm">
             <span className="text-muted-foreground block">Business / Brand</span>
-            <input id="business" name="business" className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow" placeholder="GrowUp Co." />
+            <input
+              id="contact-business"
+              name="business"
+              type="text"
+              autoComplete="off"
+              data-1p-ignore
+              value={business}
+              onChange={(e) => setBusiness(e.target.value)}
+              className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow"
+              placeholder="GrowUp Co."
+            />
           </div>
           <div className="grid gap-2 text-sm">
             <span className="text-muted-foreground block">How can we help?</span>
-            <textarea id="message" name="message" required rows={5} className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow resize-none" placeholder="Tell us about your goals…" />
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={5}
+              autoComplete="off"
+              data-1p-ignore
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow resize-none"
+              placeholder="Tell us about your goals…"
+            />
           </div>
           <button type="submit" className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2">
             Send Message via Email <Send className="h-4 w-4" />
