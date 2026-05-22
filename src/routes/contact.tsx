@@ -118,7 +118,7 @@ function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          className="bento-card p-8 grid gap-4"
+          className="bento-card form-card p-8 grid gap-4"
           autoComplete="off"
         >
           <div className="grid sm:grid-cols-2 gap-4">

@@ -147,4 +147,15 @@
     background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), oklch(0.65 0.22 290 / 0.12), transparent 40%);
     pointer-events: none;
   }
+  .bento-card.form-card {
+    overflow: visible;
+    transition: none;
+  }
+  .bento-card.form-card::before {
+    content: none;
+  }
+  .bento-card.form-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-card);
+  }
 }
