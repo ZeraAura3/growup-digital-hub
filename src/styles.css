@@ -95,6 +95,9 @@
       radial-gradient(900px 500px at 110% 10%, oklch(0.40 0.22 295 / 0.25), transparent 60%);
     background-attachment: fixed;
   }
+  html.contact-safety body {
+    background-attachment: scroll;
+  }
   h1, h2, h3, h4, h5 { font-family: var(--font-display); letter-spacing: -0.02em; }
   ::selection { background: color-mix(in oklab, var(--primary) 60%, transparent); color: white; }
 }
@@ -157,5 +160,18 @@
   .bento-card.form-card:hover {
     transform: none;
     box-shadow: var(--shadow-card);
+  }
+  .contact-safety .bento-card {
+    transition: none;
+  }
+  .contact-safety .bento-card::before {
+    content: none;
+  }
+  .contact-safety .bento-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-card);
+  }
+  .contact-safety .backdrop-blur-xl {
+    backdrop-filter: none;
   }
 }

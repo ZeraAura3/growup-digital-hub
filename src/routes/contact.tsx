@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -22,6 +22,13 @@ function Contact() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.add("contact-safety");
+    return () => {
+      document.documentElement.classList.remove("contact-safety");
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
