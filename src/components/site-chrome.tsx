@@ -16,12 +16,6 @@ export function SiteHeader() {
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
 
-    if (!isMenuOpen) {
-      return () => {
-        document.body.style.overflow = "";
-      };
-    }
-
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
