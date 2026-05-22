@@ -15,9 +15,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.add("contact-safety");
@@ -26,7 +24,7 @@ function Contact() {
     };
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -40,29 +38,13 @@ function Contact() {
       return;
     }
 
-    setLoading(true);
-    setError(false);
+    const subject = `New enquiry from ${name}${business ? ` (${business})` : ""}`;
+    const body = `Name: ${name}\nEmail: ${email}\nBusiness: ${business}\n\n${message}`;
+    const mailto = `mailto:growup3201@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
 
-    try {
-      formData.set("name", name);
-      formData.set("email", email);
-      formData.set("business", business);
-      formData.set("message", message);
-
-      await fetch("https://script.google.com/macros/s/AKfycbyxee6wVxTMc9CW_6ZyniP7WUbhde226oh-UjpjB3cpoY-iSPOUxc83UuMcM9Ep877ngg/exec", {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      });
-
-      setSent(true);
-      form.reset();
-    } catch (err) {
-      console.error(err);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    setSent(true);
+    form.reset();
   };
 
   return (
