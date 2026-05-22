@@ -15,10 +15,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [business, setBusiness] = useState("");
-  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
@@ -32,8 +28,14 @@ function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!name.trim() || !message.trim()) {
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = (formData.get("name") ?? "").toString().trim();
+    const email = (formData.get("email") ?? "").toString().trim();
+    const business = (formData.get("business") ?? "").toString().trim();
+    const message = (formData.get("message") ?? "").toString().trim();
+
+    if (!name || !message) {
       alert("Please provide your name and a message so we can help you best!");
       return;
     }
@@ -42,11 +44,10 @@ function Contact() {
     setError(false);
 
     try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("business", business);
-      formData.append("message", message);
+      formData.set("name", name);
+      formData.set("email", email);
+      formData.set("business", business);
+      formData.set("message", message);
 
       await fetch("https://script.google.com/macros/s/AKfycbyxee6wVxTMc9CW_6ZyniP7WUbhde226oh-UjpjB3cpoY-iSPOUxc83UuMcM9Ep877ngg/exec", {
         method: "POST",
@@ -55,10 +56,7 @@ function Contact() {
       });
 
       setSent(true);
-      setName("");
-      setEmail("");
-      setBusiness("");
-      setMessage("");
+      form.reset();
     } catch (err) {
       console.error(err);
       setError(true);
@@ -137,8 +135,6 @@ function Contact() {
                 type="text"
                 autoComplete="off"
                 data-1p-ignore
-                value={name}
-                onChange={(e) => setName(e.target.value)}
                 className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow"
                 placeholder="Jane Doe"
               />
@@ -151,8 +147,6 @@ function Contact() {
                 type="email"
                 autoComplete="off"
                 data-1p-ignore
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow"
                 placeholder="you@brand.com"
               />
@@ -166,8 +160,6 @@ function Contact() {
               type="text"
               autoComplete="off"
               data-1p-ignore
-              value={business}
-              onChange={(e) => setBusiness(e.target.value)}
               className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow"
               placeholder="GrowUp Co."
             />
@@ -180,15 +172,18 @@ function Contact() {
               rows={5}
               autoComplete="off"
               data-1p-ignore
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
               className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow resize-none"
               placeholder="Tell us about your goals…"
             />
           </div>
-          <button type="submit" disabled={loading || sent} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
-            {loading ? "Sending..." : sent ? "Thanks — we'll be in touch!" : (<>Send Message <Send className="h-4 w-4" /></>)}
+          <button type="submit" disabled={loading} className="btn-hero inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium mt-2 disabled:opacity-75 disabled:cursor-not-allowed">
+            {loading ? "Sending..." : (<>Send Message <Send className="h-4 w-4" /></>)}
           </button>
+          {sent && (
+            <div className="text-emerald-400 text-sm md:col-span-2 text-center">
+              Thanks — we will be in touch!
+            </div>
+          )}
           {error && (
             <div className="text-red-500 text-sm md:col-span-2 text-center">
               Something went wrong. Please try again or email us directly at growup3201@gmail.com
