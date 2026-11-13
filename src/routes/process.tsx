@@ -3,9 +3,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: "How We Work — GrowUp Services" },
+      { title: "How We Work — Yashu Technosoft" },
       { name: "description", content: "Our four-step process to take brands from idea to measurable digital growth." },
-      { property: "og:title", content: "Our Process — GrowUp Services" },
+      { property: "og:title", content: "Our Process — Yashu Technosoft" },
       { property: "og:description", content: "Understand. Strategise. Launch. Grow." },
     ],
   }),

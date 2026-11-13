@@ -6,9 +6,9 @@ import growthVideo from "@/assets/AQOYCGTe8g2-ndEoRjfk6p-9S4AsJXYo0hB6x3---4FbUJ
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "GrowUp Services — Small Ideas. Big Growth." },
+      { title: "Yashu Technosoft — Small Ideas. Big Growth." },
       { name: "description", content: "Helping startups, small businesses and local brands grow online with smart, affordable digital marketing." },
-      { property: "og:title", content: "GrowUp Services — Helping Startups Grow Digitally" },
+      { property: "og:title", content: "Yashu Technosoft — Helping Startups Grow Digitally" },
       { property: "og:description", content: "Social media, SEO, websites, ads & branding tailored for startups." },
       { property: "og:image", content: heroImg },
     ],
@@ -62,7 +62,7 @@ function Home() {
                 Helping Startups<br />Grow Digitally.
               </h1>
               <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-                GrowUp Services is a modern digital marketing studio helping small businesses, startups
+                Yashu Technosoft is a modern digital marketing studio helping small businesses, startups
                 and local brands build a strong online identity through social media, SEO, websites,
                 ads and branding.
               </p>
@@ -210,7 +210,7 @@ function Home() {
         <h2 className="mt-3 text-4xl md:text-5xl font-bold text-gradient max-w-3xl">Stories from brands we've helped grow.</h2>
         <div className="mt-10 grid md:grid-cols-2 gap-4">
           {[
-            { q: "GrowUp Services helped us improve our social media presence and attract more customers.", a: "Local Boutique Owner" },
+            { q: "Yashu Technosoft helped us improve our social media presence and attract more customers.", a: "Local Boutique Owner" },
             { q: "Affordable services, creative ideas, and excellent support for startups.", a: "Early-stage Founder" },
           ].map((t) => (
             <figure key={t.a} className="bento-card p-8">
@@ -228,7 +228,7 @@ function Home() {
           <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-primary blur-3xl opacity-30" />
           <h2 className="text-4xl md:text-6xl font-bold text-gradient relative">Let's Build Your Brand Together</h2>
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto relative">
-            Ready to grow your business online? Connect with GrowUp Services today.
+            Ready to grow your business online? Connect with Yashu Technosoft today.
           </p>
           <div className="mt-8 flex justify-center gap-3 flex-wrap relative">
             <Link to="/contact" className="btn-hero inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium">

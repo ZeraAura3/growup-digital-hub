@@ -4,9 +4,9 @@ import { Target, Eye, Heart } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — GrowUp Services" },
-      { name: "description", content: "GrowUp Services empowers startups with affordable, creative, result-oriented digital marketing." },
-      { property: "og:title", content: "About GrowUp Services" },
+      { title: "About — Yashu Technosoft" },
+      { name: "description", content: "Yashu Technosoft empowers startups with affordable, creative, result-oriented digital marketing." },
+      { property: "og:title", content: "About Yashu Technosoft" },
       { property: "og:description", content: "Our mission, vision and approach to startup growth." },
     ],
   }),
@@ -21,7 +21,7 @@ function About() {
         A growing studio for growing brands.
       </h1>
       <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-        GrowUp Services is a digital marketing startup founded with a clear vision —
+        Yashu Technosoft is a digital marketing startup founded with a clear vision —
         help businesses succeed in the digital world with affordable, creative and
         result-oriented solutions tailored to every business need.
       </p>
@@ -56,7 +56,7 @@ function About() {
         </h2>
         <p className="mt-4 text-muted-foreground max-w-2xl">
           Whether you're starting a new business or growing an existing brand,
-          GrowUp Services helps you build a professional digital presence without
+          Yashu Technosoft helps you build a professional digital presence without
           expensive marketing costs. Every startup deserves a strong online identity.
         </p>
         <Link to="/contact" className="btn-hero mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium">

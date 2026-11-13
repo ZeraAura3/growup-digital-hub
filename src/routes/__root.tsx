@@ -73,9 +73,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GrowUp Services — Digital Marketing for Modern Businesses" },
+      { title: "Yashu Technosoft — Digital Marketing for Modern Businesses" },
       { name: "description", content: "Digital marketing startup helping small businesses, startups and local brands grow online with social media, SEO, websites and ads." },
-      { property: "og:title", content: "GrowUp Services — Helping Startups Grow Digitally" },
+      { property: "og:title", content: "Yashu Technosoft — Helping Startups Grow Digitally" },
       { property: "og:description", content: "Creative, affordable digital marketing for startups and growing businesses." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

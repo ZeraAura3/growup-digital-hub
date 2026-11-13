@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — GrowUp Services" },
-      { name: "description", content: "Let's build your brand together. Reach GrowUp Services for a free consultation." },
-      { property: "og:title", content: "Contact GrowUp Services" },
+      { title: "Contact — Yashu Technosoft" },
+      { name: "description", content: "Let's build your brand together. Reach Yashu Technosoft for a free consultation." },
+      { property: "og:title", content: "Contact Yashu Technosoft" },
       { property: "og:description", content: "Email, call or book a free consultation." },
     ],
   }),
@@ -160,7 +160,7 @@ function Contact() {
               autoComplete="off"
               data-1p-ignore
               className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-primary-glow"
-              placeholder="GrowUp Co."
+              placeholder="Yashu Technosoft Co."
             />
           </div>
           <div className="grid gap-2 text-sm">

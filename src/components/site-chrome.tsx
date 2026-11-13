@@ -37,11 +37,11 @@ export function SiteHeader() {
           <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white shadow-[0_0_20px_-6px_var(--color-primary)]">
             <img
               src={groupLogo}
-              alt="GrowUp Services"
+              alt="Yashu Technosoft"
               className="h-16 w-16 object-cover object-[50%_35%]"
             />
           </span>
-          <span className="font-display font-bold tracking-tight text-lg">GrowUp</span>
+          <span className="font-display font-bold tracking-tight text-lg">Yashu Technosoft</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -109,11 +109,11 @@ export function SiteHeader() {
               <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white shadow-[0_0_20px_-6px_var(--color-primary)]">
                 <img
                   src={groupLogo}
-                  alt="GrowUp Services"
+                  alt="Yashu Technosoft"
                   className="h-16 w-16 object-cover object-[50%_35%]"
                 />
               </span>
-              <span className="font-display text-lg font-bold tracking-tight">GrowUp</span>
+              <span className="font-display text-lg font-bold tracking-tight">Yashu Technosoft</span>
             </Link>
 
             <button
@@ -165,11 +165,11 @@ export function SiteFooter() {
             <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white">
               <img
                 src={groupLogo}
-                alt="GrowUp Services"
+                alt="Yashu Technosoft"
                 className="h-16 w-16 object-cover object-[50%_35%]"
               />
             </span>
-            <span className="font-display font-bold text-lg">GrowUp</span>
+            <span className="font-display font-bold text-lg">Yashu Technosoft</span>
           </div>
           <p className="text-sm text-muted-foreground max-w-xs">
             Digital Marketing • Branding • Website Development • Startup Growth Solutions
@@ -203,7 +203,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/5 py-6 text-center text-xs text-muted-foreground">
-        © 2026 GrowUp Services. All Rights Reserved.
+        © 2026 Yashu Technosoft. All Rights Reserved.
       </div>
     </footer>
   );

@@ -5,9 +5,9 @@ import { Megaphone, Globe, Search, Target, Sparkles, Palette, ArrowRight, CheckC
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — GrowUp Services" },
+      { title: "Services — Yashu Technosoft" },
       { name: "description", content: "Social media, websites, SEO, Google & Meta Ads, content and branding for startups." },
-      { property: "og:title", content: "Our Digital Services — GrowUp Services" },
+      { property: "og:title", content: "Our Digital Services — Yashu Technosoft" },
       { property: "og:description", content: "Everything you need to grow online, under one roof." },
     ],
   }),
@@ -22,7 +22,7 @@ const services = [
     desc: "Connect with customers, build trust and grow across Instagram, Facebook, LinkedIn and YouTube.",
     overview: [
       "Social media marketing is one of the most effective ways for startups and businesses to connect with customers, build trust and grow online. A strong social media presence helps businesses increase visibility, attract potential customers and build long-term relationships.",
-      "At GrowUp Services, we help businesses create professional and engaging social media profiles that represent their brand identity and communicate clearly with their audience.",
+      "At Yashu Technosoft, we help businesses create professional and engaging social media profiles that represent their brand identity and communicate clearly with their audience.",
     ],
     strategyTitle: "We develop customised strategies based on",
     strategy: ["Business goals", "Industry type", "Target audience", "Competitor analysis", "Current social media trends"],
@@ -69,7 +69,7 @@ const services = [
     desc: "Get a professional website that builds trust, explains your business and helps generate enquiries.",
     overview: [
       "A website is one of the most important assets for any business. It acts as the digital identity of the company and creates the first impression for customers.",
-      "At GrowUp Services, we design and develop modern websites that are professional, user-friendly, mobile responsive, SEO-friendly, fast and secure.",
+      "At Yashu Technosoft, we design and develop modern websites that are professional, user-friendly, mobile responsive, SEO-friendly, fast and secure.",
       "Our websites are designed not only to look attractive but also to help businesses generate leads and improve customer trust.",
     ],
     sections: [
@@ -118,7 +118,7 @@ const services = [
     desc: "Improve search visibility so customers can discover your products or services when they need them.",
     overview: [
       "SEO helps businesses improve their visibility on search engines like Google. When customers search for products or services online, SEO helps businesses appear in search results.",
-      "At GrowUp Services, we use modern SEO techniques to improve search rankings, website traffic, online visibility and lead generation.",
+      "At Yashu Technosoft, we use modern SEO techniques to improve search rankings, website traffic, online visibility and lead generation.",
     ],
     sections: [
       {
@@ -196,7 +196,7 @@ const services = [
     desc: "Create visuals, videos and branded content that attract attention and support your marketing goals.",
     overview: [
       "Content is one of the most important parts of digital marketing. High-quality content helps businesses attract attention, build engagement, increase brand awareness and improve customer trust.",
-      "At GrowUp Services, we create creative and engaging content designed according to the brand's identity and audience preferences.",
+      "At Yashu Technosoft, we create creative and engaging content designed according to the brand's identity and audience preferences.",
     ],
     sections: [
       {
@@ -236,7 +236,7 @@ const services = [
     overview: [
       "Branding is much more than just a logo. It represents the identity, personality and values of a business.",
       "Strong branding helps businesses build trust, stand out from competitors, create customer recognition and establish professionalism.",
-      "At GrowUp Services, we help startups build unique and memorable brand identities.",
+      "At Yashu Technosoft, we help startups build unique and memorable brand identities.",
     ],
     sections: [
       {
