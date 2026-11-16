@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import groupLogo from "@/assets/group_logo.png";
+import brandLogo from "@/assets/logo.jpeg";
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,11 +34,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/60 border-b border-white/5">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white shadow-[0_0_20px_-6px_var(--color-primary)]">
+          <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-black shadow-[0_0_20px_-6px_var(--color-primary)]">
             <img
-              src={groupLogo}
+              src={brandLogo}
               alt="Yashu Technosoft"
-              className="h-16 w-16 object-cover object-[50%_35%]"
+              className="h-full w-full object-cover scale-110"
             />
           </span>
           <span className="font-display font-bold tracking-tight text-lg">Yashu Technosoft</span>
@@ -106,11 +106,11 @@ export function SiteHeader() {
               onClick={() => setIsMenuOpen(false)}
               className="flex items-center gap-2"
             >
-              <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white shadow-[0_0_20px_-6px_var(--color-primary)]">
+              <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-black shadow-[0_0_20px_-6px_var(--color-primary)]">
                 <img
-                  src={groupLogo}
+                  src={brandLogo}
                   alt="Yashu Technosoft"
-                  className="h-16 w-16 object-cover object-[50%_35%]"
+                  className="h-full w-full object-cover scale-110"
                 />
               </span>
               <span className="font-display text-lg font-bold tracking-tight">Yashu Technosoft</span>
@@ -162,11 +162,11 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 py-12 grid gap-8 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-white">
+            <span className="grid h-11 w-11 place-items-center overflow-hidden rounded-xl bg-black">
               <img
-                src={groupLogo}
+                src={brandLogo}
                 alt="Yashu Technosoft"
-                className="h-16 w-16 object-cover object-[50%_35%]"
+                className="h-full w-full object-cover scale-110"
               />
             </span>
             <span className="font-display font-bold text-lg">Yashu Technosoft</span>

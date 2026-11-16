@@ -43,36 +43,36 @@
 :root {
   --radius: 1rem;
 
-  /* Midnight Indigo palette */
-  --background: oklch(0.13 0.04 280);          /* #0a0a1a */
+  /* Yashu Technosoft palette: deep navy + brand blue + orange (from logo/banner) */
+  --background: oklch(0.14 0.045 262);         /* deep navy */
   --foreground: oklch(0.97 0.01 270);
-  --surface: oklch(0.18 0.06 282);             /* #141432 card surface */
-  --surface-2: oklch(0.24 0.09 282);           /* #1e1e5a deeper */
-  --card: oklch(0.18 0.06 282);
+  --surface: oklch(0.19 0.06 262);             /* card surface */
+  --surface-2: oklch(0.25 0.09 262);           /* deeper */
+  --card: oklch(0.19 0.06 262);
   --card-foreground: oklch(0.97 0.01 270);
-  --popover: oklch(0.18 0.06 282);
+  --popover: oklch(0.19 0.06 262);
   --popover-foreground: oklch(0.97 0.01 270);
 
-  --primary: oklch(0.58 0.22 277);             /* indigo #4f46e5 */
+  --primary: oklch(0.57 0.21 260);             /* brand blue (logo bars) */
   --primary-foreground: oklch(0.98 0.005 270);
-  --primary-glow: oklch(0.72 0.22 290);
+  --primary-glow: oklch(0.70 0.18 250);
 
-  --secondary: oklch(0.24 0.09 282);
+  --secondary: oklch(0.25 0.09 262);
   --secondary-foreground: oklch(0.97 0.01 270);
-  --muted: oklch(0.22 0.05 280);
+  --muted: oklch(0.23 0.05 262);
   --muted-foreground: oklch(0.72 0.04 270);
-  --accent: oklch(0.72 0.22 290);
-  --accent-foreground: oklch(0.13 0.04 280);
+  --accent: oklch(0.74 0.18 55);              /* brand orange (logo arrow) */
+  --accent-foreground: oklch(0.14 0.045 262);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0.005 270);
 
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.58 0.22 277);
+  --ring: oklch(0.57 0.21 260);
 
-  --gradient-hero: radial-gradient(ellipse at 20% 20%, oklch(0.35 0.18 285 / 0.6), transparent 60%),
-                   radial-gradient(ellipse at 80% 70%, oklch(0.45 0.22 295 / 0.45), transparent 65%),
-                   linear-gradient(180deg, oklch(0.13 0.04 280), oklch(0.10 0.04 280));
+  --gradient-hero: radial-gradient(ellipse at 20% 20%, oklch(0.36 0.17 260 / 0.6), transparent 60%),
+                   radial-gradient(ellipse at 80% 70%, oklch(0.55 0.17 50 / 0.30), transparent 65%),
+                   linear-gradient(180deg, oklch(0.14 0.045 262), oklch(0.11 0.04 262));
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
   --gradient-border: linear-gradient(135deg, oklch(1 0 0 / 0.16), oklch(1 0 0 / 0.02));
 
@@ -91,8 +91,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(1200px 600px at 10% -10%, oklch(0.30 0.16 285 / 0.35), transparent 60%),
-      radial-gradient(900px 500px at 110% 10%, oklch(0.40 0.22 295 / 0.25), transparent 60%);
+      radial-gradient(1200px 600px at 10% -10%, oklch(0.32 0.16 260 / 0.38), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, oklch(0.55 0.17 50 / 0.16), transparent 60%);
     background-attachment: fixed;
   }
   html.contact-safety body {
@@ -112,7 +112,7 @@
     box-shadow: 0 0 0 1px oklch(1 0 0 / 0.06), var(--shadow-glow);
   }
   .text-gradient {
-    background: linear-gradient(120deg, oklch(0.98 0.005 270) 0%, oklch(0.78 0.18 290) 60%, oklch(0.65 0.22 280) 100%);
+    background: linear-gradient(120deg, oklch(0.98 0.005 260) 0%, oklch(0.84 0.16 75) 55%, oklch(0.70 0.20 45) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -133,7 +133,7 @@
   .btn-ghost:hover { background: oklch(1 0 0 / 0.08); border-color: oklch(1 0 0 / 0.28); }
   .bento-card {
     position: relative;
-    background: linear-gradient(180deg, oklch(0.20 0.07 282 / 0.7), oklch(0.16 0.05 282 / 0.7));
+    background: linear-gradient(180deg, oklch(0.21 0.07 262 / 0.7), oklch(0.17 0.05 262 / 0.7));
     border: 1px solid oklch(1 0 0 / 0.08);
     border-radius: var(--radius-2xl);
     overflow: hidden;
@@ -147,7 +147,7 @@
   .bento-card::before {
     content: "";
     position: absolute; inset: 0;
-    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), oklch(0.65 0.22 290 / 0.12), transparent 40%);
+    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), oklch(0.72 0.17 55 / 0.10), transparent 40%);
     pointer-events: none;
   }
   .bento-card.form-card {
