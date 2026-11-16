@@ -89,7 +89,7 @@ function Contact() {
                 rel="noopener noreferrer"
                 className="font-display text-lg mt-1 inline-block hover:text-primary-glow transition-colors"
               >
-                GrowUp FaceBook
+                Yashu Technosoft Facebook
               </a>
             </div>
           </div>
